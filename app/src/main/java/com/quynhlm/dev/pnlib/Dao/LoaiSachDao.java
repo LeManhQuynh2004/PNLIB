@@ -6,28 +6,25 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.quynhlm.dev.pnlib.Database.Db_Helper;
-import com.quynhlm.dev.pnlib.Model.Sach;
 import com.quynhlm.dev.pnlib.Model.TheLoai;
 
 import java.util.ArrayList;
 
-public class SachDao {
-    Db_Helper dbHelper;
+public class LoaiSachDao {
+    private Db_Helper dbHelper;
 
-    private static final String TABLE_NAME = "Sach";
-    private static final String COLUMN_MA_SACH = "maSach";
-    private static final String COLUMN_TEN_SACH = "tenSach";
-    private static final String COLUMN_GIA_THUE = "giaSach";
+    private static final String TABLE_NAME = "TheLoai";
     private static final String COLUMN_MA_LOAI = "maLoai";
-    public SachDao(Context context) {
+    private static final String COLUMN_TEN_LOAI = "tenLoai";
+
+    public LoaiSachDao(Context context) {
         dbHelper = new Db_Helper(context);
     }
-    public boolean insert(Sach obj) {
+
+    public boolean insert(TheLoai obj) {
         try (SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase()) {
             ContentValues contentValues = new ContentValues();
-            contentValues.put(COLUMN_TEN_SACH,obj.getTenSach());
-            contentValues.put(COLUMN_GIA_THUE, obj.getGiaThue());
-            contentValues.put(COLUMN_MA_LOAI,obj.getMaLoai());
+            contentValues.put(COLUMN_TEN_LOAI, obj.getTenLoai());
             long check = sqLiteDatabase.insert(TABLE_NAME, null, contentValues);
             return check != -1;
         } catch (Exception e) {
@@ -36,10 +33,10 @@ public class SachDao {
         }
     }
 
-    public boolean delete(Sach obj) {
+    public boolean delete(TheLoai obj) {
         try (SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase()) {
-            String[] dk = {String.valueOf(obj.getMaSach())};
-            long check = sqLiteDatabase.delete(TABLE_NAME, COLUMN_MA_SACH + " = ?", dk);
+            String[] dk = {String.valueOf(obj.getMaLoai())};
+            long check = sqLiteDatabase.delete(TABLE_NAME, COLUMN_MA_LOAI + " = ?", dk);
             return check != -1;
         } catch (Exception e) {
             e.printStackTrace();
@@ -47,14 +44,12 @@ public class SachDao {
         }
     }
 
-    public boolean update(Sach obj) {
+    public boolean update(TheLoai obj) {
         try (SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase()) {
             String[] dk = {String.valueOf(obj.getMaLoai())};
             ContentValues contentValues = new ContentValues();
-            contentValues.put(COLUMN_TEN_SACH,obj.getTenSach());
-            contentValues.put(COLUMN_GIA_THUE, obj.getGiaThue());
-            contentValues.put(COLUMN_MA_LOAI,obj.getMaLoai());
-            long check = sqLiteDatabase.update(TABLE_NAME, contentValues, COLUMN_MA_SACH + " = ?", dk);
+            contentValues.put(COLUMN_TEN_LOAI, obj.getTenLoai());
+            long check = sqLiteDatabase.update(TABLE_NAME, contentValues, COLUMN_MA_LOAI + " = ?", dk);
             return check != -1;
         } catch (Exception e) {
             e.printStackTrace();
@@ -62,23 +57,22 @@ public class SachDao {
         }
     }
 
-    public ArrayList<Sach> getAll(String sql, String... selectionArgs) {
+    public ArrayList<TheLoai> getAll(String sql, String... selectionArgs) {
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
-        ArrayList<Sach> list = new ArrayList<>();
+        ArrayList<TheLoai> list = new ArrayList<>();
         Cursor cursor = sqLiteDatabase.rawQuery(sql, selectionArgs);
         if (cursor.moveToFirst()) {
             do {
-                int maSach = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_MA_SACH));
                 int maLoai = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_MA_LOAI));
-                String tenSach = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TEN_SACH));
-                int giaSach = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_GIA_THUE));
-                list.add(new Sach(maSach,tenSach,giaSach,maLoai));
+                String tenLoai = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TEN_LOAI));
+                list.add(new TheLoai(maLoai, tenLoai));
             } while (cursor.moveToNext());
         }
         return list;
     }
-    public ArrayList<Sach> selectAll(){
-        String sql = "SELECT * FROM Sach";
+
+    public ArrayList<TheLoai> selectAll() {
+        String sql = "SELECT * FROM TheLoai";
         return getAll(sql);
     }
 }

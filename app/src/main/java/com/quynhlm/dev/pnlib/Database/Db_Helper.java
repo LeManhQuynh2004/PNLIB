@@ -19,27 +19,27 @@ public class Db_Helper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         // Tạo bảng thủ thư
-        String createTableThuThu = "CREATE TABLE IF NOT EXISTS ThuThu (" +
+        String createTableThuThu = "CREATE TABLE ThuThu (" +
                 "maTT TEXT PRIMARY KEY, " +
                 "hoTen TEXT NOT NULL, " +
                 "matKhau TEXT NOT NULL)";
         db.execSQL(createTableThuThu);
 
         // Tạo bảng thành viên
-        String createTableThanhVien = "CREATE TABLE IF NOT EXISTS ThanhVien (" +
+        String createTableThanhVien = "CREATE TABLE ThanhVien (" +
                 "maTV INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "hoTen TEXT NOT NULL, " +
                 "namSinh TEXT NOT NULL)";
         db.execSQL(createTableThanhVien);
 
         // Tạo bảng thể loại sách
-        String createTableTheLoai = "CREATE TABLE IF NOT EXISTS TheLoai(" +
+        String createTableTheLoai = "CREATE TABLE TheLoai(" +
                 "maLoai INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "tenLoai TEXT NOT NULL)";
         db.execSQL(createTableTheLoai);
 
         // Tạo bảng sách
-        String createTableSach = "CREATE TABLE IF NOT EXISTS Sach (" +
+        String createTableSach = "CREATE TABLE Sach (" +
                 "maSach INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "tenSach TEXT NOT NULL, " +
                 "giaSach INTEGER NOT NULL, " +
@@ -48,7 +48,7 @@ public class Db_Helper extends SQLiteOpenHelper {
         db.execSQL(createTableSach);
 
         // Tạo bảng phiếu mượn
-        String createTablePhieuMuon = "CREATE TABLE IF NOT EXISTS PhieuMuon(" +
+        String createTablePhieuMuon = "CREATE TABLE PhieuMuon(" +
                 "maPM INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "maTT TEXT NOT NULL, " +
                 "maTV INTEGER NOT NULL, " +

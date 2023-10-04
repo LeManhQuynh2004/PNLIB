@@ -2,7 +2,9 @@ package com.quynhlm.dev.pnlib;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 
 public class WelComeActivity extends AppCompatActivity {
 
@@ -10,5 +12,12 @@ public class WelComeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wel_come);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(new Intent(WelComeActivity.this, LoginActivity.class));
+                finish();
+            }
+        },1500);
     }
 }

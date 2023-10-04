@@ -4,25 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center"
+    android:orientation="vertical"
     android:padding="10dp"
-    tools:context=".LoginActivity">
+    tools:context=".Fragment.ThemThanhVienFragment">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="150dp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
         android:layout_marginBottom="20dp"
-        android:src="@drawable/logo" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:text="Đăng Nhập"
-        android:textSize="25sp"
-        android:textStyle="bold" />
-
+        android:src="@drawable/baseline_person_add_24" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -30,19 +21,36 @@
         android:layout_marginBottom="10dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edtUsername"
+            android:id="@+id/edt_username_add"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Tài khoản" />
+            android:hint="Tên đăng nhập"
+            android:inputType="text"
+            android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_hoTen_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Họ và tên"
+            android:inputType="text"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edtPassword"
+            android:id="@+id/edtPassword_Add"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Mật khẩu"
@@ -50,31 +58,24 @@
             android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <CheckBox
-        android:id="@+id/chkRememberPass"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:text="Lưu mật khẩu" />
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
 
         <Button
-            android:id="@+id/btnLogin"
+            android:id="@+id/btnSave_addTT"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginRight="10dp"
+            android:layout_weight="1"
             android:background="@drawable/brackground_button"
-            android:text="ĐĂNG NHẬP"
+            android:text="LƯU"
             android:textColor="@color/black"
             app:backgroundTint="@null" />
 
         <Button
-            android:id="@+id/btnCancel"
+            android:id="@+id/btnCancle_addTT"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
